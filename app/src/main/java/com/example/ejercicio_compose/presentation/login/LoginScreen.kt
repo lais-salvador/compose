@@ -9,9 +9,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +26,9 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ejercicio_compose.R
@@ -42,13 +46,13 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Img()
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         UserTextField()
         Spacer(modifier = Modifier.height(10.dp))
         PassTextField()
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(30.dp))
         forgotPasswordLink(onForgotPassword)
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         LoginButton(onLoginSuccess)
     }
 }
@@ -88,7 +92,7 @@ fun PassTextField(){
         leadingIcon = {
             Image(
                 painterResource(id = R.drawable.lock),
-                contentDescription = "",
+                contentDescription = "AppLogo",
                 modifier = Modifier.alpha(0.5f)
             )
         },
@@ -98,8 +102,9 @@ fun PassTextField(){
                 contentDescription = "",
                 modifier = Modifier.alpha(0.5f)
             )
-        }
-
+        },
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
     )
 }
 
@@ -123,11 +128,10 @@ fun Img() = Image(
 fun forgotPasswordLink(onForgotPassword: () -> Unit) {
     Text(
         modifier = Modifier.clickable{onForgotPassword()},
-        text = AnnotatedString("Se me ha olvidado la contraseña"),
+        text = AnnotatedString("Forgot password"),
+        color = MaterialTheme.colorScheme.primary,
     )
 }
-
-
 
 @Preview
 @Composable
