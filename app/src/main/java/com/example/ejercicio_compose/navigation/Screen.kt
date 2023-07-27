@@ -1,6 +1,8 @@
 package com.example.ejercicio_compose.navigation
 
 import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
 sealed class Screen (
     val route: String,
@@ -19,6 +21,16 @@ sealed class Screen (
     object HeroListScreen: Screen(
         route = "heroList",
         arguments = emptyList()
+    )
+
+    object HeroDetailScreen: Screen(
+        route = "heroDetail",
+        arguments = listOf(
+            navArgument(name = "heroId"){
+                type = NavType.StringType
+                nullable = false
+            }
+        )
     )
 }
 

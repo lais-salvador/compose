@@ -67,7 +67,7 @@ fun UserTextField(){
     OutlinedTextField(
         value = usuario,
         onValueChange = { usuario = it },
-        label = { Text( "Usuario") },
+        label = { Text( "Email") },
         leadingIcon = {
             Image(
                 painterResource(id = R.drawable.email),
@@ -88,7 +88,7 @@ fun PassTextField(){
     OutlinedTextField(
         value = pass,
         onValueChange = { pass = it },
-        label = { Text("Contraseña") },
+        label = { Text("Password") },
         leadingIcon = {
             Image(
                 painterResource(id = R.drawable.lock),

@@ -13,7 +13,8 @@ fun NavigationGraph(){
         startDestination = Screen.LoginScreen.route
     ){
         addLoginScreen(navController)
-        addForgotPasswordScreen(navController)
+        addForgotPasswordScreen()
         addHeroListScreen(navController)
+        addHeroDetailScreen()
     }
 }
