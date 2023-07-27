@@ -2,12 +2,14 @@ package com.example.ejercicio_compose.presentation.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
@@ -22,13 +24,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ejercicio_compose.R
 
 @Composable
 fun LoginScreen(
-    onLoginSucces:() -> Unit
+    onLoginSuccess:() -> Unit,
+    onForgotPassword: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -43,7 +47,9 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(10.dp))
         PassTextField()
         Spacer(modifier = Modifier.height(10.dp))
-        LoginButton(onLoginSucces)
+        forgotPasswordLink(onForgotPassword)
+        Spacer(modifier = Modifier.height(5.dp))
+        LoginButton(onLoginSuccess)
     }
 }
 
@@ -98,28 +104,33 @@ fun PassTextField(){
 }
 
 @Composable
-fun LoginButton(onLoginSuccess: () -> Unit){
+fun LoginButton(onLoginSuccess: () -> Unit) =
     Button(
-        onClick = {  onLoginSuccess }
+        onClick = onLoginSuccess
     ) {
         Text("Login")
     }
-}
+
 
 @Composable
-fun Img(){
-    Image(
+fun Img() = Image(
         modifier = Modifier.size(100.dp),
         painter = painterResource(id = R.drawable.android),
         contentDescription = "My awesome image"
+)
+
+@Composable
+fun forgotPasswordLink(onForgotPassword: () -> Unit) {
+    Text(
+        modifier = Modifier.clickable{onForgotPassword()},
+        text = AnnotatedString("Se me ha olvidado la contraseña"),
     )
 }
+
 
 
 @Preview
 @Composable
 fun LoginPreview(){
-    LoginScreen{
-
-    }
+    LoginScreen({}, {})
 }

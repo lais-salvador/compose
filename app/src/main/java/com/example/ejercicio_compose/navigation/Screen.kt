@@ -11,9 +11,15 @@ sealed class Screen (
         arguments = emptyList()
     )
 
-    /*class OtherClass: Screen (
-        "", emptyList()
-    )*/
+    object ForgotPasswordScreen: Screen(
+        route = "forgotPassword",
+        arguments = emptyList()
+    )
+
+    object HeroListScreen: Screen(
+        route = "heroList",
+        arguments = emptyList()
+    )
 }
 
 val test = Screen.LoginScreen
